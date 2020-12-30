@@ -40,7 +40,7 @@ def cnt2file(pth, outpth):
         f.write(s)
 
 
-for home, dirs, files in os.walk('./fudan/train'):
+for home, dirs, files in os.walk('./thu/train'):
     i = 1
     cat = home.split('\\')
     category = ''
@@ -48,19 +48,19 @@ for home, dirs, files in os.walk('./fudan/train'):
         category = cat[1]
     print(category)
     for f in files:
-        print(i, './tmp_train/' + category + '/' + f)
-        cnt2file('./tmp_train/' + category + '_' + str(i) + '.txt',
+        print(i, './thu/train/' + category + '/' + f)
+        cnt2file('./thu/train/' + category + '/' + f,
                  './tmp_train/' + category + '_' + str(i) + '.txt')
         i += 1
 
 cats = ""
 
-for home, dirs, files in os.walk('./fudan/train'):
+for home, dirs, files in os.walk('./thu/train'):
     cat = home.split('\\')
     category = ''
     if len(cat) > 1:
         category = cat[1]
         cats += category + " " + str(len(files)) + '\n'
 
-with open('./category_cnt', 'w') as f:
+with open('./category_cnt', 'w', encoding='utf-8') as f:
     f.write(cats)

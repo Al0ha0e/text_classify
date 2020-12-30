@@ -44,7 +44,7 @@ def classify(text):
     return max_cate
 
 
-for home, dirs, files in os.walk('./fudan/answer'):
+for home, dirs, files in os.walk('./thu/test'):
     if len(files) < 1:
         continue
 
@@ -59,8 +59,8 @@ for home, dirs, files in os.walk('./fudan/answer'):
     outcome = ""
     for f in files:
         tot += 1
-        print('./fudan/answer/' + category + '/' + f)
-        with open('./fudan/answer/' + category + '/' + f, 'r', encoding='gbk', errors='ignore') as file:
+        print('./thu/test/' + category + '/' + f)
+        with open('./thu/test/' + category + '/' + f, 'r', encoding='utf-8', errors='ignore') as file:
             s = file.read()
             ans = classify(s)
             outcome += "classify: " + \
@@ -69,5 +69,5 @@ for home, dirs, files in os.walk('./fudan/answer'):
                 true_cnt += 1
     outcome += "tot: " + str(tot) + " true: " + str(true_cnt) + \
         " rate: " + str(true_cnt / tot) + "\n"
-    with open("./outcome/" + category + ".txt", "w") as file:
+    with open("./outcome/" + category + ".txt", "w", encoding='utf-8') as file:
         file.write(outcome)
